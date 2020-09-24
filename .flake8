@@ -1,0 +1,3 @@
+[flake8]
+exclude=admin,__pycache__,migrations,tests,urls.py,apps.py,__init__.py
+max-line-length=100
