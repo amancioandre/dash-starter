@@ -8,8 +8,7 @@ from .base import BaseModel
 class Role(BaseModel, RoleMixin):
     __tablename__ = "roles"
 
-    id = db.Column(UUID(as_uuid=True), primary_key=True, server_default=sa_text("uuid_generate_v4()"),)
-    name = db.Column(db.String(80), nullable=False)
+    name = db.Column(db.String(80), nullable=False, unique=True)
     description = db.Column(db.String(255), nullable=False)
 
     def __str__(self):
