@@ -4,7 +4,7 @@ from dash import Dash
 from dashboard.config import META_DESCRIPTION, META_VIEWPORT, EXTERNAL_STYLESHEETS
 from dashboard.guards import local_auth_guard
 
-def register(server, title, url_base_pathname, layout, view, callback):
+def register(server, title, url_base_pathname, layout, view):
     try:
         dashboard = Dash(
             __name__,
@@ -17,8 +17,8 @@ def register(server, title, url_base_pathname, layout, view, callback):
 
         with server.app_context():
             dashboard.title=title
-            dashboard.layout=layout(dashboard, view)
-            callback(dashboard)
+            dashboard.layout=layout()
+            view(dashboard)
             
         local_auth_guard(dashboard)
         server.logger.info(f"Dashboard for {title} successfully registered.")

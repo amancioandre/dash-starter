@@ -17,6 +17,8 @@ def create_app(env):
         migrate = Migrate()
         migrate.init_app(app)
 
+        from dashboard.router import init_router
+        init_router(app)
 
         return app
     except BaseException as error:
