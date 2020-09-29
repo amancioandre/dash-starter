@@ -9,6 +9,7 @@ class Config:
     SECURITY_POST_LOGIN_VIEW = "/dashboard"
     SECURITY_LOGIN_USER_TEMPLATE = "auth/auth.html"
     SECURITY_PASSWORD_SALT = os.getenv('APP_SECRET_KEY', 'secret_key')
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
 
 class TestingConfig(Config):
     DEBUG = True
@@ -23,7 +24,7 @@ class DevelopmentConfig(Config):
 
 class ProductionConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = os.getenv("")
+    SQLALCHEMY_DATABASE_URI = os.getenv("SQLALCHEMY_DATABASE_URI", None)
     SERVER_NAME = os.getenv("SERVER_NAME", "0.0.0.0:5000")
 
 config_by_env = dict(
