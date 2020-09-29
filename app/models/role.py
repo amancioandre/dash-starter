@@ -3,11 +3,12 @@ from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import text as sa_text
 
 from app.database import db
+from .base import BaseModel
 
-class Role(db.Model, RoleMixin):
+class Role(BaseModel, RoleMixin):
     __tablename__ = "roles"
 
-    id = db.Column(UUID(as_uuid=True), primary_key=True, server_default=sa_text("uuid_generate_v4()"))
+    id = db.Column(UUID(as_uuid=True), primary_key=True, server_default=sa_text("uuid_generate_v4()"),)
     name = db.Column(db.String(80), nullable=False)
     description = db.Column(db.String(255), nullable=False)
 
