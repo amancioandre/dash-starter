@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+    app:
+        container_name: dashboard
+        build:
+            context: .
+            target: development
+        working_dir: /usr/src/dashboard
+        restart: always
+        command: python server.python
+        env_file:
+            - .env
+        volumes:
+            - .:/usr/src/dashboard
+            - ./requirements.txt:/usr/src/dashboard/requirements.txt
+        ports:
+            - "5000:5000"
+        depends_on: 
+            - db
+        links:
+            - db
+
+    db:
+        container_name: database
+        image: postgres:11.5
+        restart: always
+        environment: 
+            - PG_DATA=/var/lib/postgresql/data
+        volumes:
+            - ./pgdata:/var/lib/postgresql/data
+        ports:
+            - "5432:5433"
+
+    redis:
+        container_name: cache
+        image: redis:alpine
+        ports:
+            - "6379:6379"
+
+volumes:
+    pgdata:
