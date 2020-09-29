@@ -8,7 +8,7 @@ class Config:
     SECURITY_LOGIN_URL = "/"
     SECURITY_POST_LOGIN_VIEW = "/dashboard"
     SECURITY_LOGIN_USER_TEMPLATE = "auth/auth.html"
-    SECURITY_PASSWORD_SALT = Config.SECRET_KEY
+    SECURITY_PASSWORD_SALT = os.getenv('APP_SECRET_KEY', 'secret_key')
 
 class TestingConfig(Config):
     DEBUG = True
