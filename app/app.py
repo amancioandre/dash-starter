@@ -25,7 +25,7 @@ def create_app(env):
                 user_datastore.create_role(name="super-admin", description="Admin")
                 user_datastore.create_user(email="super@admin.com", name="Super Admin", password=hash_password("admin"))
                 db.session.commit()
-                user_datastore.add_role_to_user("admin@admin.com", "super-admin")
+                user_datastore.add_role_to_user("super@admin.com", "super-admin")
                 db.session.commit()
 
         from dashboard.router import init_router
