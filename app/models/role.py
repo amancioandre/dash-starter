@@ -1,4 +1,4 @@
-from flask_security import RoleMixin
+from flask_security.models.fsqla_v2 import FsRoleMixin as RoleMixin
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy import text as sa_text
 

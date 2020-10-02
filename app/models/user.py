@@ -1,4 +1,4 @@
-from flask_security import UserMixin
+from flask_security.models.fsqla_v2 import FsUserMixin as UserMixin
 
 from app.database import db
 from .base import BaseModel

@@ -1,10 +1,9 @@
-from flask_security import RoleMixin
 from sqlalchemy.dialects.postgresql import UUID
 
 from app.database import db
 from .base import BaseModel
 
-class RoleUser(BaseModel, RoleMixin):
+class RoleUser(BaseModel):
     __tablename__ = 'roles_users'
 
     user_id = db.Column('user_id', UUID(as_uuid=True), db.ForeignKey('users.id'))
